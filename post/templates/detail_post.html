@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+    <div class="profile">
+        <div class="profile-img">
+            <img src="{{post.image.url}}" alt="">
+        </div>
+        <div class="profile-body">
+            <h2>{{post.title}}</h2>
+            <p>{{post.description}}</p>
+            <p>{{post.created}}</p>
+            <a style="text-decoration: none;" href="{% url 'profile_user' post.user.user.id %}"><span style="font-size: large; color: rgb(28, 149, 230);">@{{post.user}}</span></a>
+            <div>
+                <ul class="pre-content">
+                    <li>Лайки - 11</li>
+                    <li>Коментарии - 11</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}

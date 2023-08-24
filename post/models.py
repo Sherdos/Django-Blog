@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 
 class Post(models.Model):
     
-    user = models.ForeignKey('post.ProfileUser', on_delete=models.CASCADE, verbose_name='Пользователь')
+    user = models.ForeignKey('post.ProfileUser', on_delete=models.CASCADE, related_name='user_profile', verbose_name='Пользователь')
     title = models.CharField(max_length=55, verbose_name='Название поста')
     description = models.TextField(verbose_name='Описание поста')
     image = models.ImageField(upload_to='post_image/', verbose_name='фото поста')

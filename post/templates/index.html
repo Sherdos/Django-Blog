@@ -1,22 +1,14 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog</title>
-    <link rel="stylesheet" href="{% static 'post/style.css' %}">
-</head>
-<body>
-    <nav>
+{% extends 'base.html' %}
 
-    </nav>
+
+{% block content %}
     <div class="posts">
         
         {% for post in posts %}    
             <div class="post">
                 <div class="body-post">
-                    <h2>{{post.title}}</h2>
+                    <a style="text-decoration: none;"  href="{% url 'post' post.id %}"><h2> {{post.title}}</h2></a>
+                    <a style="text-decoration: none;" href="{% url 'profile_user' post.user.user.id %}"><span style="font-size: large; color: rgb(28, 149, 230);">@{{post.user}}</span></a>
                     <p>{{post.description}}</p>
                 </div>
                 <div class="img-post">
@@ -26,5 +18,4 @@
         {% endfor %}
             
     </div>
-</body>
-</html>
+{% endblock content %}

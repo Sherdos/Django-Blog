@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+    <div class="profile">
+        <div class="profile-img">
+            <img src="{{user.profile_image.url}}" alt="">
+        </div>
+        <div class="profile-body">
+            <h2>{{user.user}}</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus adipisci alias cumque quaerat. Magnam ipsam mollitia, dignissimos eveniet, asperiores exercitationem eaque atque itaque, doloremque fugit velit facilis veritatis ratione maxime.</p>
+            <div>
+                <ul class="pre-content">
+                    <li>Посты - {{user.user_profile.all.count}}</li>
+                    <li>Лайки - 11</li>
+                    <li>Подпичики - 11</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}

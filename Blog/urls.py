@@ -16,12 +16,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from post.views import index
+from post.views import index, profile_user, detail_post
 from django.conf.urls.static import static
 from Blog import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', index)
+    path('', index),
+    path('users/<int:id>/', profile_user, name='profile_user'),
+    path('posts/<int:id>/', detail_post, name='post'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
