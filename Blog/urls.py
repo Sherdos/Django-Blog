@@ -16,14 +16,17 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from post.views import index, profile_user, detail_post
+from post.views import index, profile_user, detail_post, create_post, add_like, add_comment
 from django.conf.urls.static import static
 from Blog import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', index),
+    path('', index, name='index'),
     path('users/<int:id>/', profile_user, name='profile_user'),
     path('posts/<int:id>/', detail_post, name='post'),
+    path('posts/create', create_post, name='create_post'),
+    path('posts/add/like', add_like, name='add_like'),
+    path('posts/add/comment', add_comment, name='add_comment')
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

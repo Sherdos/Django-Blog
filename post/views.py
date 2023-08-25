@@ -1,5 +1,5 @@
-from django.shortcuts import render
-from post.models import Post, ProfileUser
+from django.shortcuts import render, redirect
+from post.models import Post, ProfileUser, Like, Comment
 # Create your views here.
 # MVT
 
@@ -24,5 +24,33 @@ def detail_post(request, id):
         'post':post
     }
     return render(request, 'detail_post.html',context)
+
+def create_post(request):
+    if request.method == 'POST':
+        title = request.POST.get('title')
+        description = request.POST.get('description')
+        image = request.FILES.get('image')
+        user = request.POST.get('user_id')
+        Post.objects.create(title = title, description = description, image=image, user_id = user)
+        return redirect('index')
+    return render(request, 'create_post.html')
+
+def add_like(request):
+    post = request.POST.get('post_id')
+    user = request.POST.get('user_id')
+    try:
+        Like.objects.get(post=post, user=user).delete()
+    except:
+        Like.objects.create(post_id = post, user_id = user)
+    return redirect('post', post)
+
+
+
+def add_comment(request):
+    post = request.POST.get('post_id')
+    user = request.POST.get('user_id')
+    text = request.POST.get('text')
+    Comment.objects.create(post_id = post, user_id = user, text = text)
+    return redirect('post', post)
 
 

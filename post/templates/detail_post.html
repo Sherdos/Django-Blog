@@ -10,14 +10,43 @@
             <h2>{{post.title}}</h2>
             <p>{{post.description}}</p>
             <p>{{post.created}}</p>
-            <a style="text-decoration: none;" href="{% url 'profile_user' post.user.user.id %}"><span style="font-size: large; color: rgb(28, 149, 230);">@{{post.user}}</span></a>
+            <a style="text-decoration: none;" href="{% url 'profile_user' post.user.id %}"><span style="font-size: large; color: rgb(28, 149, 230);">@{{post.user}}</span></a>
             <div>
                 <ul class="pre-content">
-                    <li>Лайки - 11</li>
+                    <li>
+                        <form method="post" action="{% url 'add_like' %}">
+                            {% csrf_token %}
+                            <input type="hidden" value="{{post.id}}" name="post_id">
+                            <input type="hidden" value="{{request.user.id}}" name="user_id">
+                            <button type="submit" class="btn btn-danger">Лайк</button> - {{post.like_post.all.count}}
+                        </form>
+                    </li>
                     <li>Коментарии - 11</li>
                 </ul>
+
             </div>
         </div>
     </div>
 
+    <form method="post" action="{% url 'add_comment' %}" class="create-comment" enctype="multipart/form-data">
+        {% csrf_token %}
+          <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">Напишите то что думаите</label>
+            <textarea class="form-control" name="text" id="exampleFormControlTextarea1" rows="3"></textarea>
+          </div>
+          <input name="user_id" type="hidden" value="{{request.user.id}}">
+          <input name="post_id" type="hidden" value="{{post.id}}">
+          <button type="submit" class="btn btn-primary">Коментировать</button>
+        </form>
+    <div class="comments">
+        
+        {% for comment in post.comment_post.all %}
+            <div class="comment">
+                <a style="text-decoration: none;" href="{% url 'profile_user' post.user.id %}"><span style="font-size: large; color: rgb(28, 149, 230);">@{{comment.user}}</span></a>
+                <p>{{comment.text}}</p>
+            </div>
+        {% endfor %}
+            
+        
+    </div>
 {% endblock content %}

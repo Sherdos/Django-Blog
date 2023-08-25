@@ -8,7 +8,7 @@
             <div class="post">
                 <div class="body-post">
                     <a style="text-decoration: none;"  href="{% url 'post' post.id %}"><h2> {{post.title}}</h2></a>
-                    <a style="text-decoration: none;" href="{% url 'profile_user' post.user.user.id %}"><span style="font-size: large; color: rgb(28, 149, 230);">@{{post.user}}</span></a>
+                    <a style="text-decoration: none;" href="{% url 'profile_user' post.user.id %}"><span style="font-size: large; color: rgb(28, 149, 230);">@{{post.user}}</span></a>
                     <p>{{post.description}}</p>
                 </div>
                 <div class="img-post">

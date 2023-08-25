@@ -1,13 +1,14 @@
 
 
 .posts {
-    width: 500px;
+    width: 700px;
     margin: auto;
+    padding: 70px;
 }
 
 .post {
     padding: 10px;
-    margin-top: 5px;
+    margin-top: 15px;
     border-radius: 10px;
     box-shadow:5px 5px 15px -3px #000000;
 }
@@ -53,4 +54,42 @@
     display: flex;
     list-style: none;
     justify-content: space-between;
+}
+
+
+.create-post {
+    width: 500px;
+    margin: auto;
+    box-shadow:5px 5px 15px -3px #000000;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 10px;
+}
+
+
+.create-comment {
+    width: 700px;
+    margin: auto;
+    box-shadow:5px 5px 15px -3px #000000;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 10px;
+}
+
+.comments {
+    width: 700px;   
+    margin: auto;
+
+}
+
+.comment {
+    padding: 15px;
+    margin-top: 15px;
+    border-radius: 10px;
+    box-shadow:5px 5px 15px -3px #000000;
+}
+
+.comment img {
+    width: 10%;
+    border-radius: 100%;
 }

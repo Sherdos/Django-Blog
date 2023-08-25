@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 
 class Post(models.Model):
     
-    user = models.ForeignKey('post.ProfileUser', on_delete=models.CASCADE, related_name='user_profile', verbose_name='Пользователь')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_profile', verbose_name='Пользователь')
     title = models.CharField(max_length=55, verbose_name='Название поста')
     description = models.TextField(verbose_name='Описание поста')
     image = models.ImageField(upload_to='post_image/', verbose_name='фото поста')
@@ -28,3 +28,15 @@ class ProfileUser(models.Model):
         
     def __str__(self) -> str:
         return f'{self.user}'
+
+
+class Comment(models.Model):
+    
+    post = models.ForeignKey('post.Post', on_delete=models.CASCADE, verbose_name='Пост', related_name='comment_post')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Пользователь', related_name='comment_user')
+    text = models.TextField(verbose_name='Коментарий')
+    
+class Like(models.Model):
+    
+    post = models.ForeignKey('post.Post', on_delete=models.CASCADE, verbose_name='Пост', related_name='like_post')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Пользователь', related_name='like_user')

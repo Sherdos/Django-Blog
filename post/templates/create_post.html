@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<form method="post" class="create-post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Название поста</label>
+        <input type="text" name="title" class="form-control" id="exampleFormControlInput1">
+      </div>
+      <div class="mb-3">
+        <label for="exampleFormControlTextarea1" class="form-label">Напишите то что думаите</label>
+        <textarea class="form-control" name="description" id="exampleFormControlTextarea1" rows="3"></textarea>
+      </div>
+      <div class="mb-3">
+        <label for="formFile" class="form-label">Загрузите фото</label>
+        <input class="form-control" name="image" type="file" id="formFile">
+      </div>
+      <input name="user_id" type="hidden" value="{{request.user.id}}">
+      <button type="submit" class="btn btn-primary">Создать пост</button>
+    </form>
+    
+{% endblock content %}
