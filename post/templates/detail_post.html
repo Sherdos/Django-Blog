@@ -13,6 +13,7 @@
             <a style="text-decoration: none;" href="{% url 'profile_user' post.user.id %}"><span style="font-size: large; color: rgb(28, 149, 230);">@{{post.user}}</span></a>
             <div>
                 <ul class="pre-content">
+                    {% if request.user.is_authenticated %}
                     <li>
                         <form method="post" action="{% url 'add_like' %}">
                             {% csrf_token %}
@@ -21,13 +22,14 @@
                             <button type="submit" class="btn btn-danger">Лайк</button> - {{post.like_post.all.count}}
                         </form>
                     </li>
-                    <li>Коментарии - 11</li>
+                    {% endif %}
+                    <li>Коментарии - {{post.comment_post.all.count}}</li>
                 </ul>
 
             </div>
         </div>
     </div>
-
+    {% if request.user.is_authenticated %}
     <form method="post" action="{% url 'add_comment' %}" class="create-comment" enctype="multipart/form-data">
         {% csrf_token %}
           <div class="mb-3">
@@ -38,6 +40,7 @@
           <input name="post_id" type="hidden" value="{{post.id}}">
           <button type="submit" class="btn btn-primary">Коментировать</button>
         </form>
+    {% endif %}
     <div class="comments">
         
         {% for comment in post.comment_post.all %}

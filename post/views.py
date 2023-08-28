@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from post.models import Post, ProfileUser, Like, Comment
+from django.contrib.auth import login, authenticate, logout
 # Create your views here.
 # MVT
 
@@ -54,3 +55,15 @@ def add_comment(request):
     return redirect('post', post)
 
 
+def login_user(request):
+    if request.method == 'POST':
+        username = request.POST.get('name')
+        password = request.POST.get('password')
+        user = authenticate(username=username, password=password)
+        login(request, user)
+        return redirect('index')
+    return render(request, 'login.html')
+
+def logout_user(request):
+    logout(request)
+    return redirect('index')

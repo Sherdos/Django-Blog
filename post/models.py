@@ -40,3 +40,8 @@ class Like(models.Model):
     
     post = models.ForeignKey('post.Post', on_delete=models.CASCADE, verbose_name='Пост', related_name='like_post')
     user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Пользователь', related_name='like_user')
+    
+    
+class Following(models.Model):
+    to_user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Владелец', related_name='user_to')
+    from_user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Подпищик', related_name='user_from')

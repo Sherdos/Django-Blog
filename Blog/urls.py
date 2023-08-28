@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from post.views import index, profile_user, detail_post, create_post, add_like, add_comment
+from post.views import index, profile_user, detail_post, create_post, add_like, add_comment, login_user, logout_user
 from django.conf.urls.static import static
 from Blog import settings
 urlpatterns = [
@@ -26,7 +26,9 @@ urlpatterns = [
     path('posts/<int:id>/', detail_post, name='post'),
     path('posts/create', create_post, name='create_post'),
     path('posts/add/like', add_like, name='add_like'),
-    path('posts/add/comment', add_comment, name='add_comment')
+    path('posts/add/comment', add_comment, name='add_comment'),
+    path('users/login', login_user, name='login_user'),
+    path('users/logout', logout_user, name='logout_user'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

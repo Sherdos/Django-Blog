@@ -11,12 +11,25 @@
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus adipisci alias cumque quaerat. Magnam ipsam mollitia, dignissimos eveniet, asperiores exercitationem eaque atque itaque, doloremque fugit velit facilis veritatis ratione maxime.</p>
             <div>
                 <ul class="pre-content">
-                    <li>Посты - {{user.user_profile.all.count}}</li>
+                    <li>Посты - {{user.user.user_profile.all.count}}</li>
                     <li>Лайки - 11</li>
                     <li>Подпичики - 11</li>
                 </ul>
             </div>
         </div>
     </div>
-
+    <div style="display: flex; flex-wrap: wrap; width: 930px; margin: auto;column-gap: 10px; ">
+    {% for post in user.user.user_profile.all %}    
+    <div class="post" style="width: 300px; height: 500px;">
+        <div class="body-post">
+            <a style="text-decoration: none;"  href="{% url 'post' post.id %}"><h2> {{post.title}}</h2></a>
+            <a style="text-decoration: none;" href="{% url 'profile_user' post.user.id %}"><span style="font-size: large; color: rgb(28, 149, 230);">@{{post.user}}</span></a>
+            <p>{{post.description}}</p>
+        </div>
+        <div class="img-post">
+            <img src="{{post.image.url}}" alt="">
+        </div>
+    </div>
+    {% endfor %}
+</div>
 {% endblock content %}
