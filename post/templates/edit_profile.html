@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+<form style="width: 1000px; margin: auto; margin-top: 30px;" action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Имя</label>
+        <input type="text" class="form-control" name="name" value="{{user.username}}">
+    </div>
+        <label for="exampleInputEmail1" class="form-label">Почта</label>
+        <input type="email" class="form-control" name="email" value="{{user.email}}">
+      </div>
+      <div class="mb-3">
+        <label for="formFile" class="form-label">Загрузите фото</label>
+        <input class="form-control" name="image" type="file" id="formFile">
+      </div>
+      <button type="submit" style="margin-top: 10px;" class="btn btn-primary">Submit</button>
+</form>
+{% endblock content %}

@@ -20,7 +20,7 @@ class Post(models.Model):
 
 class ProfileUser(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Пользователь')
-    profile_image = models.ImageField(upload_to='users/profile_image/', verbose_name='аватарка')
+    profile_image = models.ImageField(upload_to='users/profile_image/', verbose_name='аватарка', default='static/нет фотографии.png')
     
     class Meta:
         verbose_name = 'Профиль Пользователя'

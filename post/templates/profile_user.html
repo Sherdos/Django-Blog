@@ -8,17 +8,41 @@
         </div>
         <div class="profile-body">
             <h2>{{user.user}}</h2>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus adipisci alias cumque quaerat. Magnam ipsam mollitia, dignissimos eveniet, asperiores exercitationem eaque atque itaque, doloremque fugit velit facilis veritatis ratione maxime.</p>
             <div>
                 <ul class="pre-content">
                     <li>Посты - {{user.user.user_profile.all.count}}</li>
-                    <li>Лайки - 11</li>
-                    <li>Подпичики - 11</li>
+                    <li>Подписки - {{user.user.user_from.all.count}}</li>
+                    <li>Подпичики - {{user.user.user_to.all.count}}</li>
                 </ul>
+                
+                
+                    
+                
+                {% if request.user == user.user %}
+                    
+                <a href="{% url 'edit_profile' user.id %}" class="btn btn-primary">
+                    Изменить профиль
+                </a>
+                {% else %}
+                <form action="{% url 'following' %}" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="user_to" value="{{user.user.id}}">
+                    <button type="submit" class="btn btn-danger">
+                        {% if following %}
+                            Отписаться
+                        {% else %}
+                            Подписаться
+                        {% endif %}
+                    </button>
+                </form>
+
+                {% endif %}
+                
+                
             </div>
         </div>
     </div>
-    <div style="display: flex; flex-wrap: wrap; width: 930px; margin: auto;column-gap: 10px; ">
+    <div style="display: flex; flex-wrap: wrap; width: 930px; margin: auto; column-gap: 10px; ">
     {% for post in user.user.user_profile.all %}    
     <div class="post" style="width: 300px; height: 500px;">
         <div class="body-post">

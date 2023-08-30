@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
 {% block css %}
-{% load static %}
 <link type="text/css" rel="stylesheet" href=" {% static 'assets/css/bootstrap.min.css' %} ">
 <link type="text/css" rel="stylesheet" href=" {% static 'assets/css/style.css' %} ">
 <link type="text/css" rel="stylesheet" href=" {% static 'assets/fonts/font-awesome/css/font-awesome.min.css' %} ">
@@ -19,41 +19,41 @@
                     <div class="form-info">
                         <div class="form-section align-self-center">
                             <div class="btn-section clearfix">
-                                <a href="login-3.html" class="link-btn active btn-1 active-bg default-bg">Login</a>
-                                <a href="register-3.html" class="link-btn btn-2">Register</a>
+                                <a href="{% url 'login_user' %}" class="link-btn active btn-1 active-bg default-bg">Вход</a>
+                                <a href="{% url 'register' %}" class="link-btn btn-2">Регистрация</a>
                             </div>
                             <div class="logo">
                                 <a href="login-3.html">
-                                    <img src="assets/img/logos/logo-2.png" alt="logo">
+                                    <img src="{% static 'assets/img/logos/logo-2.png' %}" alt="logo">
                                 </a>
                             </div>
-                            <h1>Welcome!</h1>
-                            <h3>Sign Into Your Account</h3>
+                            <h1>Добро пожаловать</h1>
+                            <h3>Войти в свой аккаунт</h3>
                             <div class="clearfix"></div>
                             <form action="#" method="post">
                                 {% csrf_token %}
                                 <div class="form-group">
-                                    <label for="first_field" class="form-label">Username</label>
-                                    <input name="name" type="text" class="form-control" id="first_field" placeholder="Username" aria-label="Username">
+                                    <label for="first_field" class="form-label">Имя</label>
+                                    <input name="name" type="text" class="form-control" id="first_field" placeholder="Имя" aria-label="Имя">
                                 </div>
                                 <div class="form-group clearfix">
-                                    <label for="second_field" class="form-label">Password</label>
-                                    <input name="password" type="password" class="form-control" autocomplete="off" id="second_field" placeholder="Password" aria-label="Password">
+                                    <label for="second_field" class="form-label">Пароль</label>
+                                    <input name="password" type="password" class="form-control" autocomplete="off" id="second_field" placeholder="Пароль" aria-label="Пароль">
                                 </div>
                                 <div class="checkbox form-group clearfix">
                                     <div class="form-check float-start mb-0">
                                         <input class="form-check-input" type="checkbox" id="rememberme">
                                         <label class="form-check-label" for="rememberme">
-                                            Remember me
+                                             Запимнить меня
                                         </label>
                                     </div>
-                                    <a href="forgot-password-3.html" class="float-end forgot-password">Forgot your password?</a>
+                                    <a href="forgot-password-3.html" class="float-end forgot-password">Забыли пароль ?</a>
                                 </div>
                                 <div class="form-group clearfix">
-                                    <button type="submit" class="btn btn-primary btn-lg btn-theme">Login</button>
+                                    <button type="submit" class="btn btn-primary btn-lg btn-theme">Войти</button>
                                 </div>
                             </form>
-                            <p>Help & Support</p>
+                            <p>Помощ & подершка</p>
                             <div class="social-list">
                                 <a href="#">
                                     <i class="fa fa-facebook"></i>

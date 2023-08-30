@@ -1,25 +1,13 @@
-<!DOCTYPE html>
-<html lang="zxx">
-<head>
-    <title>ODDO - Login and Register Form HTML5 Template</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta charset="UTF-8">
-    <!-- External CSS libraries -->
-    <link type="text/css" rel="stylesheet" href="assets/css/bootstrap.min.css">
-    <link type="text/css" rel="stylesheet" href="assets/fonts/font-awesome/css/font-awesome.min.css">
-    <link type="text/css" rel="stylesheet" href="assets/fonts/flaticon/font/flaticon.css">
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% block css %}
+<link type="text/css" rel="stylesheet" href=" {% static 'assets/css/bootstrap.min.css' %} ">
+<link type="text/css" rel="stylesheet" href=" {% static 'assets/css/style.css' %} ">
+<link type="text/css" rel="stylesheet" href=" {% static 'assets/fonts/font-awesome/css/font-awesome.min.css' %} ">
+<link type="text/css" rel="stylesheet" href=" {% static 'assets/fonts/flaticon/font/flaticon.css' %} ">
 
-    <!-- Favicon icon -->
-    <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon" >
-
-    <!-- Google fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-
-    <!-- Custom Stylesheet -->
-    <link type="text/css" rel="stylesheet" href="assets/css/style.css">
-
-</head>
-<body id="top" class="login-3-bodycolor">
+{% endblock css %}
 <div class="page_loader"></div>
 
 <!-- Login 3 start -->
@@ -31,45 +19,50 @@
                     <div class="form-info">
                         <div class="form-section align-self-center">
                             <div class="btn-section clearfix">
-                                <a href="login-3.html" class="link-btn active btn-1 default-bg">Login</a>
-                                <a href="register-3.html" class="link-btn btn-2 active-bg">Register</a>
+                                <a href="{% url 'login_user' %}" class="link-btn active btn-1 default-bg">Вход</a>
+                                <a href="{% url 'register' %}" class="link-btn btn-2 active-bg">Регистрация</a>
                             </div>
                             <div class="logo">
                                 <a href="login-3.html">
-                                    <img src="assets/img/logos/logo-2.png" alt="logo">
+                                    <img src="{% static 'assets/img/logos/logo-2.png' %}" alt="logo">
                                 </a>
                             </div>
-                            <h1>Welcome!</h1>
-                            <h3>Create An Cccount</h3>
+                            <h1>Добро пожаловать</h1>
+                            <h3>Создать аккаунт</h3>
                             <div class="clearfix"></div>
-                            <form action="#" method="GET">
+                            <form action="" method="post">
+                                {% csrf_token %}
                                 <div class="form-group">
-                                    <label for="first_field" class="form-label">Full Name</label>
-                                    <input name="name" type="text" class="form-control" id="first_field" placeholder="Full Name" aria-label="Full Name">
+                                    <label for="first_field" class="form-label">Имя</label>
+                                    <input name="name" type="text" class="form-control" id="first_field" placeholder="Имя" aria-label="Имя">
                                 </div>
                                 <div class="form-group">
-                                    <label for="second_field" class="form-label">Email address</label>
-                                    <input name="email" type="email" class="form-control" id="second_field" placeholder="Email Address" aria-label="Email Address">
+                                    <label for="second_field" class="form-label">Почта</label>
+                                    <input name="email" type="email" class="form-control" id="second_field" placeholder="Почта" aria-label="Почта">
                                 </div>
                                 <div class="form-group clearfix">
-                                    <label for="third_field" class="form-label">Password</label>
-                                    <input name="password" type="password" class="form-control" autocomplete="off" id="third_field" placeholder="Password" aria-label="Password">
+                                    <label for="third_field" class="form-label">Пароль</label>
+                                    <input name="password" type="password" class="form-control" autocomplete="off" id="third_field" placeholder="Пароль" aria-label="Пароль">
+                                </div>
+                                <div class="form-group clearfix">
+                                    <label for="third_field" class="form-label">Подверждение Пароля</label>
+                                    <input name="password_config" type="password" class="form-control" autocomplete="off" id="third_field" placeholder="Подверждение Пароля" aria-label="Подверждение Пароля">
                                 </div>
                                 <div class="form-group checkbox clearfix">
                                     <div class="clearfix float-start">
                                         <div class="form-check mb-0">
                                             <input class="form-check-input" type="checkbox" id="rememberme">
                                             <label class="form-check-label" for="rememberme">
-                                                I agree to the terms of service
+                                                Я соглашаюсь с политекой сайта
                                             </label>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="form-group clearfix">
-                                    <button type="submit" class="btn btn-primary btn-lg btn-theme">Register</button>
+                                    <button type="submit" class="btn btn-primary btn-lg btn-theme">Зарегистрироваться</button>
                                 </div>
                             </form>
-                            <p>Help & Support</p>
+                            <p>Помощ & подершка</p>
                             <div class="social-list">
                                 <a href="#">
                                     <i class="fa fa-facebook"></i>
@@ -109,12 +102,13 @@
 </div>
 <!-- Ripple background end -->
 
-<!-- External JS libraries -->
-<script src="assets/js/jquery-3.6.0.min.js"></script>
-<script src="assets/js/bootstrap.bundle.min.js"></script>
-<script src="assets/js/jquery.validate.min.js"></script>
-<script src="assets/js/app.js"></script>
-<!-- Custom JS Script -->
+{% endblock content %}
 
-</body>
-</html>
+
+{% block js %}
+    <script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'js/jquery.validate.min.js' %}"></script>
+    <script src="{% static 'js/app.js' %}"></script>
+{% endblock js %}
+    
